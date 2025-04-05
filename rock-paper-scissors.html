@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getComputerChoice() {
+        const array = ["keo", "bua", "bao"];
+        const random = Math.floor(Math.random() * array.length);
+        return array[random];
+      }
+      function getHumanChoice() {
+        let choice = prompt("nhap vao keo bua bao: ");
+        let lower = choice.toLowerCase();
+        return lower;
+      }
+
+      function playRound(C, H) {
+        switch (C) {
+          case "bao":
+            if (H == "bao") {
+              console.log("Ban da hoa");
+            } else if (H == "keo") {
+              console.log("Ban da thang");
+              humanScore += 1;
+            } else {
+              console.log("Ban da thua");
+              computerScore += 1;
+            }
+            break;
+          case "keo":
+            if (H == "bao") {
+              console.log("Ban da thua");
+              computerScore += 1;
+            } else if (H == "keo") {
+              console.log("Ban da hoa");
+            } else {
+              console.log("Ban da thang");
+              humanScore += 1;
+            }
+            break;
+          case "bua":
+            if (H == "bao") {
+              console.log("Ban da thang");
+              humanScore += 1;
+            } else if (H == "keo") {
+              console.log("Ban da thua");
+              computerScore += 1;
+            } else {
+              console.log("Ban da hoa");
+            }
+            break;
+        }
+      }
+      function gamePlay() {
+        for (i = 1; i <= 5; i++) {
+          let C = getComputerChoice();
+          console.log("May: " + C + "\n");
+          let H = getHumanChoice();
+          console.log("Nguoi: " + H + "\n");
+          playRound(C, H);
+        }
+        console.log(humanScore);
+        console.log(computerScore);
+
+        if (humanScore > computerScore) console.log("Ban da thang");
+        else if (humanScore < computerScore) console.log("Ban da thua");
+        else console.log("Ban da hoa");
+      }
+      let humanScore = 0;
+      let computerScore = 0;
+      gamePlay();
+    </script>
+  </body>
+</html>
